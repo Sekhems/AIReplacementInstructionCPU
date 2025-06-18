@@ -1,0 +1,41 @@
+[
+  {
+    "original": "vcvtph2ps ymm0, xmm1",
+    "replacement": [
+      "vcvtph2ps xmm0, xmm1",
+      "movdqu xmm2, xmm1",
+      "psrldq xmm2, 8",
+      "vcvtph2ps xmm3, xmm2",
+      "vinsertf128 ymm0, ymm0, xmm3, 1"
+    ]
+  },
+  {
+    "original": "vcvtph2ps ymm0, [rax]",
+    "replacement": [
+      "vcvtph2ps xmm0, [rax]",
+      "vcvtph2ps xmm1, [rax+8]",
+      "vinsertf128 ymm0, ymm0, xmm1, 1"
+    ]
+  },
+  {
+    "original": "vcvtps2ph xmm1, ymm0, imm8",
+    "replacement": [
+      "vextractf128 xmm2, ymm0, 0",
+      "vextractf128 xmm3, ymm0, 1",
+      "vcvtps2ph xmm4, xmm2, imm8",
+      "vcvtps2ph xmm5, xmm3, imm8",
+      "punpcklqdq xmm1, xmm4, xmm5"
+    ]
+  },
+  {
+    "original": "vcvtps2ph [rax], ymm0, imm8",
+    "replacement": [
+      "vextractf128 xmm1, ymm0, 0",
+      "vextractf128 xmm2, ymm0, 1",
+      "vcvtps2ph xmm3, xmm1, imm8",
+      "vcvtps2ph xmm4, xmm2, imm8",
+      "movq [rax], xmm3",
+      "movq [rax+8], xmm4"
+    ]
+  }
+]

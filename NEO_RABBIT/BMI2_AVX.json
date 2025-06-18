@@ -1,0 +1,190 @@
+[
+  {
+    "original": "bzhi r32a, r32b, r32c",
+    "replacement": [
+      "mov ecx, r32c",
+      "and ecx, 0x1F",
+      "mov eax, 1",
+      "shl eax, cl",
+      "dec eax",
+      "test cl, 0x20",
+      "cmovz eax, eax",
+      "cmovnz eax, -1",
+      "and eax, r32b",
+      "mov r32a, eax"
+    ]
+  },
+  {
+    "original": "bzhi r32a, m32, r32b",
+    "replacement": [
+      "mov ecx, r32b",
+      "and ecx, 0x1F",
+      "mov eax, 1",
+      "shl eax, cl",
+      "dec eax",
+      "test cl, 0x20",
+      "cmovz eax, eax",
+      "cmovnz eax, -1",
+      "and eax, [m32]",
+      "mov r32a, eax"
+    ]
+  },
+  {
+    "original": "mulx r32a, r32b, r32c",
+    "replacement": [
+      "mov eax, edx",
+      "mul r32c",
+      "mov r32a, edx",
+      "mov r32b, eax"
+    ]
+  },
+  {
+    "original": "mulx r32a, r32b, m32",
+    "replacement": [
+      "mov eax, edx",
+      "mul dword [m32]",
+      "mov r32a, edx",
+      "mov r32b, eax"
+    ]
+  },
+  {
+    "original": "pdep r32a, r32b, r32c",
+    "replacement": [
+      "xor eax, eax",
+      "mov edx, r32c",
+      "mov esi, r32b",
+      "mov ecx, 0",
+      ".loop_pdep:",
+      "  test edx, 1",
+      "  jz .skip_pdep",
+      "  mov edi, esi",
+      "  and edi, 1",
+      "  shl edi, cl",
+      "  or eax, edi",
+      "  shr esi, 1",
+      "  .skip_pdep:",
+      "  shr edx, 1",
+      "  inc ecx",
+      "  cmp ecx, 32",
+      "  jb .loop_pdep",
+      "mov r32a, eax"
+    ]
+  },
+  {
+    "original": "pext r32a, r32b, r32c",
+    "replacement": [
+      "xor eax, eax",
+      "mov edx, r32c",
+      "mov esi, r32b",
+      "mov ecx, 0",
+      ".loop_pext:",
+      "  test edx, 1",
+      "  jz .skip_pext",
+      "  mov edi, esi",
+      "  and edi, 1",
+      "  shl edi, cl",
+      "  or eax, edi",
+      "  inc ecx",
+      "  .skip_pext:",
+      "  shr edx, 1",
+      "  shr esi, 1",
+      "  cmp edx, 0",
+      "  jnz .loop_pext",
+      "mov r32a, eax"
+    ]
+  },
+  {
+    "original": "bzhi r64a, r64b, r64c",
+    "replacement": [
+      "mov rcx, r64c",
+      "and rcx, 0x3F",
+      "mov rax, 1",
+      "shl rax, cl",
+      "dec rax",
+      "test cl, 0x40",
+      "cmovz rax, rax",
+      "cmovnz rax, -1",
+      "and rax, r64b",
+      "mov r64a, rax"
+    ]
+  },
+  {
+    "original": "bzhi r64a, m64, r64b",
+    "replacement": [
+      "mov rcx, r64b",
+      "and rcx, 0x3F",
+      "mov rax, 1",
+      "shl rax, cl",
+      "dec rax",
+      "test cl, 0x40",
+      "cmovz rax, rax",
+      "cmovnz rax, -1",
+      "and rax, [m64]",
+      "mov r64a, rax"
+    ]
+  },
+  {
+    "original": "mulx r64a, r64b, r64c",
+    "replacement": [
+      "mov rax, rdx",
+      "mul r64c",
+      "mov r64a, rdx",
+      "mov r64b, rax"
+    ]
+  },
+  {
+    "original": "mulx r64a, r64b, m64",
+    "replacement": [
+      "mov rax, rdx",
+      "mul qword [m64]",
+      "mov r64a, rdx",
+      "mov r64b, rax"
+    ]
+  },
+  {
+    "original": "pdep r64a, r64b, r64c",
+    "replacement": [
+      "xor rax, rax",
+      "mov rdx, r64c",
+      "mov rsi, r64b",
+      "mov rcx, 0",
+      ".loop_pdep64:",
+      "  test rdx, 1",
+      "  jz .skip_pdep64",
+      "  mov rdi, rsi",
+      "  and rdi, 1",
+      "  shl rdi, cl",
+      "  or rax, rdi",
+      "  shr rsi, 1",
+      "  .skip_pdep64:",
+      "  shr rdx, 1",
+      "  inc rcx",
+      "  cmp rcx, 64",
+      "  jb .loop_pdep64",
+      "mov r64a, rax"
+    ]
+  },
+  {
+    "original": "pext r64a, r64b, r64c",
+    "replacement": [
+      "xor rax, rax",
+      "mov rdx, r64c",
+      "mov rsi, r64b",
+      "mov rcx, 0",
+      ".loop_pext64:",
+      "  test rdx, 1",
+      "  jz .skip_pext64",
+      "  mov rdi, rsi",
+      "  and rdi, 1",
+      "  shl rdi, cl",
+      "  or rax, rdi",
+      "  inc rcx",
+      "  .skip_pext64:",
+      "  shr rdx, 1",
+      "  shr rsi, 1",
+      "  cmp rdx, 0",
+      "  jnz .loop_pext64",
+      "mov r64a, rax"
+    ]
+  }
+]

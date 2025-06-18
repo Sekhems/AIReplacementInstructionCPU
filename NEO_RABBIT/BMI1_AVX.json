@@ -1,0 +1,236 @@
+[
+  {
+    "original": "andn r32a, r32b, r32c",
+    "replacement": [
+      "mov r32a, r32b",
+      "not r32a",
+      "and r32a, r32c"
+    ]
+  },
+  {
+    "original": "andn r32a, r32b, m32",
+    "replacement": [
+      "mov r32a, r32b",
+      "not r32a",
+      "and r32a, [m32]"
+    ]
+  },
+  {
+    "original": "bextr r32a, r32b, r32c",
+    "replacement": [
+      "mov ecx, r32c",
+      "mov edx, ecx",
+      "shr edx, 8",
+      "and ecx, 0xFF",
+      "mov eax, r32b",
+      "shr eax, dl",
+      "mov edx, -1",
+      "shl edx, cl",
+      "not edx",
+      "and eax, edx",
+      "mov r32a, eax"
+    ]
+  },
+  {
+    "original": "bextr r32a, m32, r32b",
+    "replacement": [
+      "mov ecx, r32b",
+      "mov edx, ecx",
+      "shr edx, 8",
+      "and ecx, 0xFF",
+      "mov eax, [m32]",
+      "shr eax, dl",
+      "mov edx, -1",
+      "shl edx, cl",
+      "not edx",
+      "and eax, edx",
+      "mov r32a, eax"
+    ]
+  },
+  {
+    "original": "blsi r32a, r32b",
+    "replacement": [
+      "mov r32a, r32b",
+      "neg r32a",
+      "and r32a, r32b"
+    ]
+  },
+  {
+    "original": "blsi r32a, m32",
+    "replacement": [
+      "mov r32a, [m32]",
+      "mov r32b, r32a",
+      "neg r32a",
+      "and r32a, r32b"
+    ]
+  },
+  {
+    "original": "blsmsk r32a, r32b",
+    "replacement": [
+      "mov r32a, r32b",
+      "dec r32a",
+      "xor r32a, r32b"
+    ]
+  },
+  {
+    "original": "blsmsk r32a, m32",
+    "replacement": [
+      "mov r32a, [m32]",
+      "mov r32b, r32a",
+      "dec r32a",
+      "xor r32a, r32b"
+    ]
+  },
+  {
+    "original": "blsr r32a, r32b",
+    "replacement": [
+      "mov r32a, r32b",
+      "dec r32a",
+      "and r32a, r32b"
+    ]
+  },
+  {
+    "original": "blsr r32a, m32",
+    "replacement": [
+      "mov r32a, [m32]",
+      "mov r32b, r32a",
+      "dec r32a",
+      "and r32a, r32b"
+    ]
+  },
+  {
+    "original": "tzcnt r32a, r32b",
+    "replacement": [
+      "mov r32a, r32b",
+      "mov ecx, 32",
+      "bsf r32a, r32a",
+      "cmovz r32a, ecx"
+    ]
+  },
+  {
+    "original": "tzcnt r32a, m32",
+    "replacement": [
+      "mov r32a, [m32]",
+      "mov ecx, 32",
+      "bsf r32a, r32a",
+      "cmovz r32a, ecx"
+    ]
+  },
+  {
+    "original": "andn r64a, r64b, r64c",
+    "replacement": [
+      "mov r64a, r64b",
+      "not r64a",
+      "and r64a, r64c"
+    ]
+  },
+  {
+    "original": "andn r64a, r64b, m64",
+    "replacement": [
+      "mov r64a, r64b",
+      "not r64a",
+      "and r64a, [m64]"
+    ]
+  },
+  {
+    "original": "bextr r64a, r64b, r64c",
+    "replacement": [
+      "mov rcx, r64c",
+      "mov rdx, rcx",
+      "shr rdx, 8",
+      "and ecx, 0xFF",
+      "mov rax, r64b",
+      "shr rax, dl",
+      "mov rdx, -1",
+      "shl rdx, cl",
+      "not rdx",
+      "and rax, rdx",
+      "mov r64a, rax"
+    ]
+  },
+  {
+    "original": "bextr r64a, m64, r64b",
+    "replacement": [
+      "mov rcx, r64b",
+      "mov rdx, rcx",
+      "shr rdx, 8",
+      "and ecx, 0xFF",
+      "mov rax, [m64]",
+      "shr rax, dl",
+      "mov rdx, -1",
+      "shl rdx, cl",
+      "not rdx",
+      "and rax, rdx",
+      "mov r64a, rax"
+    ]
+  },
+  {
+    "original": "blsi r64a, r64b",
+    "replacement": [
+      "mov r64a, r64b",
+      "neg r64a",
+      "and r64a, r64b"
+    ]
+  },
+  {
+    "original": "blsi r64a, m64",
+    "replacement": [
+      "mov r64a, [m64]",
+      "mov r64b, r64a",
+      "neg r64a",
+      "and r64a, r64b"
+    ]
+  },
+  {
+    "original": "blsmsk r64a, r64b",
+    "replacement": [
+      "mov r64a, r64b",
+      "dec r64a",
+      "xor r64a, r64b"
+    ]
+  },
+  {
+    "original": "blsmsk r64a, m64",
+    "replacement": [
+      "mov r64a, [m64]",
+      "mov r64b, r64a",
+      "dec r64a",
+      "xor r64a, r64b"
+    ]
+  },
+  {
+    "original": "blsr r64a, r64b",
+    "replacement": [
+      "mov r64a, r64b",
+      "dec r64a",
+      "and r64a, r64b"
+    ]
+  },
+  {
+    "original": "blsr r64a, m64",
+    "replacement": [
+      "mov r64a, [m64]",
+      "mov r64b, r64a",
+      "dec r64a",
+      "and r64a, r64b"
+    ]
+  },
+  {
+    "original": "tzcnt r64a, r64b",
+    "replacement": [
+      "mov r64a, r64b",
+      "mov rcx, 64",
+      "bsf r64a, r64a",
+      "cmovz r64a, rcx"
+    ]
+  },
+  {
+    "original": "tzcnt r64a, m64",
+    "replacement": [
+      "mov r64a, [m64]",
+      "mov rcx, 64",
+      "bsf r64a, r64a",
+      "cmovz r64a, rcx"
+    ]
+  }
+]

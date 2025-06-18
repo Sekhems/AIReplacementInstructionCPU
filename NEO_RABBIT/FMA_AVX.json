@@ -1,0 +1,232 @@
+[
+  {
+    "original": "vfmadd132pd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmulpd xmm3, xmm0, xmm2",
+      "vaddpd xmm3, xmm3, xmm1",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulpd xmm4, xmm4, xmm5",
+      "vaddpd xmm4, xmm4, xmm6",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfmadd132ps ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmulps xmm3, xmm0, xmm2",
+      "vaddps xmm3, xmm3, xmm1",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulps xmm4, xmm4, xmm5",
+      "vaddps xmm4, xmm4, xmm6",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfmadd132sd xmm0, xmm1, xmm2",
+    "replacement": [
+      "vmulsd xmm3, xmm0, xmm2",
+      "vaddsd xmm0, xmm3, xmm1"
+    ]
+  },
+  {
+    "original": "vfmadd132ss xmm0, xmm1, xmm2",
+    "replacement": [
+      "vmulss xmm3, xmm0, xmm2",
+      "vaddss xmm0, xmm3, xmm1"
+    ]
+  },
+  {
+    "original": "vfmaddsub132pd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmovapd xmm7, [mask_fmaddsub_pd]",
+      "vmulpd xmm3, xmm0, xmm2",
+      "vmulpd xmm8, xmm1, xmm7",
+      "vaddpd xmm3, xmm3, xmm8",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulpd xmm4, xmm4, xmm5",
+      "vmulpd xmm6, xmm6, xmm7",
+      "vaddpd xmm4, xmm4, xmm6",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfmaddsub132ps ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmovaps xmm7, [mask_fmaddsub_ps]",
+      "vmulps xmm3, xmm0, xmm2",
+      "vmulps xmm8, xmm1, xmm7",
+      "vaddps xmm3, xmm3, xmm8",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulps xmm4, xmm4, xmm5",
+      "vmulps xmm6, xmm6, xmm7",
+      "vaddps xmm4, xmm4, xmm6",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfmsub132pd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmulpd xmm3, xmm0, xmm2",
+      "vsubpd xmm3, xmm3, xmm1",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulpd xmm4, xmm4, xmm5",
+      "vsubpd xmm4, xmm4, xmm6",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfmsub132ps ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmulps xmm3, xmm0, xmm2",
+      "vsubps xmm3, xmm3, xmm1",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulps xmm4, xmm4, xmm5",
+      "vsubps xmm4, xmm4, xmm6",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfmsub132sd xmm0, xmm1, xmm2",
+    "replacement": [
+      "vmulsd xmm3, xmm0, xmm2",
+      "vsubsd xmm0, xmm3, xmm1"
+    ]
+  },
+  {
+    "original": "vfmsub132ss xmm0, xmm1, xmm2",
+    "replacement": [
+      "vmulss xmm3, xmm0, xmm2",
+      "vsubss xmm0, xmm3, xmm1"
+    ]
+  },
+  {
+    "original": "vfmsubadd132pd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmovapd xmm7, [mask_fmsubadd_pd]",
+      "vmulpd xmm3, xmm0, xmm2",
+      "vmulpd xmm8, xmm1, xmm7",
+      "vaddpd xmm3, xmm3, xmm8",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulpd xmm4, xmm4, xmm5",
+      "vmulpd xmm6, xmm6, xmm7",
+      "vaddpd xmm4, xmm4, xmm6",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfmsubadd132ps ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmovaps xmm7, [mask_fmsubadd_ps]",
+      "vmulps xmm3, xmm0, xmm2",
+      "vmulps xmm8, xmm1, xmm7",
+      "vaddps xmm3, xmm3, xmm8",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulps xmm4, xmm4, xmm5",
+      "vmulps xmm6, xmm6, xmm7",
+      "vaddps xmm4, xmm4, xmm6",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfnmadd132pd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmulpd xmm3, xmm0, xmm2",
+      "vsubpd xmm3, xmm1, xmm3",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulpd xmm4, xmm4, xmm5",
+      "vsubpd xmm4, xmm6, xmm4",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfnmadd132ps ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmulps xmm3, xmm0, xmm2",
+      "vsubps xmm3, xmm1, xmm3",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulps xmm4, xmm4, xmm5",
+      "vsubps xmm4, xmm6, xmm4",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfnmadd132sd xmm0, xmm1, xmm2",
+    "replacement": [
+      "vmulsd xmm3, xmm0, xmm2",
+      "vsubsd xmm0, xmm1, xmm3"
+    ]
+  },
+  {
+    "original": "vfnmadd132ss xmm0, xmm1, xmm2",
+    "replacement": [
+      "vmulss xmm3, xmm0, xmm2",
+      "vsubss xmm0, xmm1, xmm3"
+    ]
+  },
+  {
+    "original": "vfnmsub132pd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmulpd xmm3, xmm0, xmm2",
+      "vaddpd xmm3, xmm3, xmm1",
+      "vxorpd xmm3, xmm3, [neg_mask_pd]",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulpd xmm4, xmm4, xmm5",
+      "vaddpd xmm4, xmm4, xmm6",
+      "vxorpd xmm4, xmm4, [neg_mask_pd]",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfnmsub132ps ymm0, ymm1, ymm2",
+    "replacement": [
+      "vmulps xmm3, xmm0, xmm2",
+      "vaddps xmm3, xmm3, xmm1",
+      "vxorps xmm3, xmm3, [neg_mask_ps]",
+      "vextractf128 xmm4, ymm0, 1",
+      "vextractf128 xmm5, ymm2, 1",
+      "vextractf128 xmm6, ymm1, 1",
+      "vmulps xmm4, xmm4, xmm5",
+      "vaddps xmm4, xmm4, xmm6",
+      "vxorps xmm4, xmm4, [neg_mask_ps]",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vfnmsub132sd xmm0, xmm1, xmm2",
+    "replacement": [
+      "vmulsd xmm3, xmm0, xmm2",
+      "vaddsd xmm3, xmm3, xmm1",
+      "vxorpd xmm0, xmm3, [neg_mask_sd]"
+    ]
+  },
+  {
+    "original": "vfnmsub132ss xmm0, xmm1, xmm2",
+    "replacement": [
+      "vmulss xmm3, xmm0, xmm2",
+      "vaddss xmm3, xmm3, xmm1",
+      "vxorps xmm0, xmm3, [neg_mask_ss]"
+    ]
+  }
+]

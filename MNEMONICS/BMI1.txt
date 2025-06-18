@@ -1,0 +1,6 @@
+andn
+bextr
+blsi
+blsmsk
+blsr
+tzcnt

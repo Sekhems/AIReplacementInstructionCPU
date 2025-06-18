@@ -1,0 +1,738 @@
+[
+  {
+    "original": "movddup ymm0, [rax]",
+    "replacement": [
+      "vmovddup xmm0, [rax]",
+      "vmovddup xmm1, [rax+16]",
+      "vinsertf128 ymm0, ymm0, xmm1, 1"
+    ]
+  },
+  {
+    "original": "vpabsb ymm0, ymm1",
+    "replacement": [
+      "vpabsb xmm0, xmm1",
+      "vextractf128 xmm2, ymm1, 1",
+      "vpabsb xmm3, xmm2",
+      "vinsertf128 ymm0, ymm0, xmm3, 1"
+    ]
+  },
+  {
+    "original": "vpabsd ymm0, ymm1",
+    "replacement": [
+      "vpabsd xmm0, xmm1",
+      "vextractf128 xmm2, ymm1, 1",
+      "vpabsd xmm3, xmm2",
+      "vinsertf128 ymm0, ymm0, xmm3, 1"
+    ]
+  },
+  {
+    "original": "vpaddb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpaddb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpaddb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpaddd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpaddd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpaddd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpaddq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpaddq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpaddq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpaddsb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpaddsb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpaddsb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpaddsw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpaddsw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpaddsw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpaddusb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpaddusb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpaddusb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpaddusw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpaddusw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpaddusw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpaddw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpaddw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpaddw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpalignr ymm0, ymm1, ymm2, imm8",
+    "replacement": [
+      "vpalignr xmm0, xmm1, xmm2, imm8",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpalignr xmm5, xmm3, xmm4, imm8",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpand ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpand xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpand xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpandn ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpandn xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpandn xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpavgb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpavgb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpavgb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpavgw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpavgw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpavgw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpblendd ymm0, ymm1, ymm2, imm8",
+    "replacement": [
+      "vpblendd xmm0, xmm1, xmm2, imm8",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpblendd xmm5, xmm3, xmm4, imm8",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpbroadcastb ymm0, [rax]",
+    "replacement": [
+      "vpbroadcastb xmm0, [rax]",
+      "vinsertf128 ymm0, ymm0, xmm0, 1"
+    ]
+  },
+  {
+    "original": "vpbroadcastd ymm0, [rax]",
+    "replacement": [
+      "vpbroadcastd xmm0, [rax]",
+      "vinsertf128 ymm0, ymm0, xmm0, 1"
+    ]
+  },
+  {
+    "original": "vpbroadcastq ymm0, [rax]",
+    "replacement": [
+      "vpbroadcastq xmm0, [rax]",
+      "vinsertf128 ymm0, ymm0, xmm0, 1"
+    ]
+  },
+  {
+    "original": "vpbroadcastw ymm0, [rax]",
+    "replacement": [
+      "vpbroadcastw xmm0, [rax]",
+      "vinsertf128 ymm0, ymm0, xmm0, 1"
+    ]
+  },
+  {
+    "original": "vpcmpeqb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpcmpeqb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpcmpeqb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpcmpeqd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpcmpeqd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpcmpeqd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpcmpeqq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpcmpeqq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpcmpeqq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpcmpeqw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpcmpeqw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpcmpeqw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpcmpgtb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpcmpgtb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpcmpgtb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpcmpgtd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpcmpgtd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpcmpgtd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpcmpgtq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpcmpgtq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpcmpgtq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpcmpgtw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpcmpgtw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpcmpgtw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vperm2i128 ymm0, ymm1, ymm2, imm8",
+    "replacement": [
+      "vextractf128 xmm3, ymm1, 0",
+      "vextractf128 xmm4, ymm2, 1",
+      "vinsertf128 ymm0, ymm3, xmm4, 1"
+    ]
+  },
+  {
+    "original": "vphaddd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vphaddd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vphaddd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vphaddsw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vphaddsw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vphaddsw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vphaddw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vphaddw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vphaddw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vphsubd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vphsubd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vphsubd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vphsubsw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vphsubsw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vphsubsw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vphsubw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vphsubw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vphsubw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmaddubsw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmaddubsw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmaddubsw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmaddwd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmaddwd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmaddwd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmaxsb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmaxsb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmaxsb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmaxsd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmaxsd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmaxsd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmaxsw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmaxsw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmaxsw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmaxub ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmaxub xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmaxub xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmaxud ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmaxud xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmaxud xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmaxuw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmaxuw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmaxuw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpminsb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpminsb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpminsb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpminsd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpminsd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpminsd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpminsw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpminsw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpminsw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpminub ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpminub xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpminub xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpminud ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpminud xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpminud xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpminuw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpminuw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpminuw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmovmskb eax, ymm0",
+    "replacement": [
+      "vpmovmskb eax, xmm0",
+      "vextractf128 xmm1, ymm0, 1",
+      "vpmovmskb ecx, xmm1",
+      "shl ecx, 16",
+      "or eax, ecx"
+    ]
+  },
+  {
+    "original": "vpmuldq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmuldq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmuldq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmulhuw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmulhuw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmulhuw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmulhw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmulhw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmulhw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmulld ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmulld xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmulld xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpmullw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpmullw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpmullw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpor ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpor xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpor xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpsubb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpsubb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpsubb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpsubd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpsubd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpsubd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpsubq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpsubq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpsubq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpsubsb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpsubsb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpsubsb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpsubsw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpsubsw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpsubsw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpsubusb ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpsubusb xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpsubusb xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpsubusw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpsubusw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpsubusw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpsubw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpsubw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpsubw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpunpckhbw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpunpckhbw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpunpckhbw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpunpckhdq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpunpckhdq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpunpckhdq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpunpckhqdq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpunpckhqdq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpunpckhqdq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpunpckhwd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpunpckhwd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpunpckhwd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpunpcklbw ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpunpcklbw xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpunpcklbw xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpunpckldq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpunpckldq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpunpckldq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpunpcklqdq ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpunpcklqdq xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpunpcklqdq xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpunpcklwd ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpunpcklwd xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpunpcklwd xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vpxor ymm0, ymm1, ymm2",
+    "replacement": [
+      "vpxor xmm0, xmm1, xmm2",
+      "vextractf128 xmm3, ymm1, 1",
+      "vextractf128 xmm4, ymm2, 1",
+      "vpxor xmm5, xmm3, xmm4",
+      "vinsertf128 ymm0, ymm0, xmm5, 1"
+    ]
+  },
+  {
+    "original": "vextracti128 xmm1, ymm2, 1",
+    "replacement": [
+      "vextractf128 xmm1, ymm2, 1"
+    ]
+  },
+  {
+    "original": "vmovntdqa ymm0, [rax]",
+    "replacement": [
+      "vmovntdqa xmm0, [rax]",
+      "vmovntdqa xmm1, [rax+16]",
+      "vinsertf128 ymm0, ymm0, xmm1, 1"
+    ]
+  }
+]
