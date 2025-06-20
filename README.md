@@ -1,19 +1,19 @@
-# AIReplacementInstructionCPU
+-# AIReplacementInstructionCPU
 AI-JSON replacement of processor instructions
 ### Advanced Instruction Analyzer & Optimizer
 
-**Описание программы**  
-Эта программа анализирует исполняемые файлы (EXE), находит  инструкции процессора (AVX2,FMA,F16C,BMI,BMI2) и заменяет их на AVX с использованием нейросетевых моделей. Ключевые особенности:
-- Динамическая замена инструкций с валидацией через эмуляцию
-- Бенчмаркинг производительности до/после замены
-- Генерация оптимизированных бинарных файлов
-- Обучение нейросети на пользовательских шаблонах замен
+**Program description**  
+This program analyzes executable files (EXE), finds processor instructions (AVX2,FMA,F16C,BMI,BMI2) and replaces them with AVX using neural network models. Key Features:
+- Dynamic instruction replacement with validation via emulation
+- Performance benchmarking before/after replacement
+- Generation of optimized binary files
+- Neural network training based on user substitution patterns
 
 ---
 
-### Требования для запуска
-**Python 3.9+** и следующие библиотеки:
-```
+### Startup Requirements
+**Python 3.9+** and the following libraries:
+``
 pefile==2023.2.7
 capstone==5.0.0
 lief==0.13.2
@@ -26,87 +26,87 @@ scikit-learn==1.3.2
 
 ---
 
-### Структура проекта
-#### Основные папки:
+### Project structure
+#### Main folders:
 1. **MNEMONICS**  
-   Содержит шаблоны инструкций для разных архитектур:
-   - `SSE.txt`, `AVX.txt`, `AVX2.txt` и др.  
-   *Формат: по одной мнемонике на строке (например "addps")*
+   It contains instruction templates for different architectures:
+- `SSE.txt `, `AVX.txt `, `AVX2.txt ` and others.  
+   *Format: one mnemonic per line (for example, "addps")*
 
 2. **NEO_RABBIT**  
-   База знаний для замены инструкций (JSON-файлы):
-   - `AVX2_AVX.json` - замены AVX2 → AVX
-   - `F16C_AVX.json` - оптимизации для float16
-   - `BMI2_AVX.json` - битовые операции  
-   *Структура: {"original": "инструкция", "replacement": ["замена1", "замена2"]}*
+   Knowledge base for replacing instructions (JSON files):
+- `AVX2_AVX.json` - replaces AVX2 → AVX
+- `F16C_AVX.json` - optimizations for float16
+   - `BMI2_AVX.json` - bit operations  
+   *Structure: {"original": "instruction", "replacement": ["substitution1", "substitution2"]}*
 
 3. **AI_MODEL**  
-   Хранит нейросетевые компоненты:
-   - `transformer_model.keras` - модель трансформера
-   - `tokenizer.json` - словарь токенизатора
-   - `model_config.json` - параметры модели
-   - `feedback_data.json` - пользовательские правки
+   Stores neural network components:
+   - `transformer_model.keras' - transformer model
+   - `tokenizer.json` - tokenizer dictionary
+- `model_config.json' - model parameters
+- `feedback_data.json` - user edits
 
 4. **CONFIG**  
-   Конфигурационные файлы:
-   - `model_config.ini` - настройки обучения нейросети
+   Configuration files:
+   - `model_config.ini` - neural network training settings
 
 ---
 
-### Сильные стороны
-1. **Гибкая замена инструкций**  
-   - Комбинирование шаблонов (JSON) и нейросетевых предсказаний
-   - Контекстно-зависимая замена (анализ соседних инструкций)
+### Strengths
+1. **Flexible instruction replacement**
+- Combining templates (JSON) and neural network predictions
+   - Context-sensitive substitution (analysis of neighboring instructions)
 
-2. **Валидация изменений**  
-   - Эмуляция через Unicorn Engine
-   - Проверка идентичности результатов до/после замены
+2. **Validation of changes**
+- Emulation via Unicorn Engine
+   - Checking the identity of the results before/after the replacement
 
-3. **Самообучающаяся система**  
-   - Сохранение удачных замен в `feedback_data.json`
-   - Автоматическое переобучение модели при изменении шаблонов
+3. **Self-learning system**
+- Saving successful substitutions in feedback_data.json`
+   - Automatic retraining of the model when changing templates
 
-4. **Безопасный экспорт**  
-   - Корректная модификация PE-файлов через LIEF
-   - Создание новой секции для длинных инструкций
-
----
-
-### Слабые стороны
-1. **Требовательность к ресурсам**  
-   - Обучение модели требует значительных вычислительных мощностей
-   - Эмуляция больших бинарников может быть медленной
-
-2. **Ограничения эмуляции**  
-   - Не поддерживает сложные системные вызовы
-   - Проблемы с инструкциями, меняющими состояние системы
-
-3. **Зависимость от шаблонов**  
-   - Качество замен зависит от полноты JSON-шаблонов
-   - Требует ручной настройки для новых архитектур
+4. **Secure export**
+- Correct modification of PE files via LIEF
+- Creation of a new section for long instructions
 
 ---
 
-### Как использовать
-1. Загрузите EXE-файл через `Open File`
-2. Выберите целевой набор инструкций (например AVX2)
-3. Запустите анализ (`Analyze File`)
-4. Примените AI-замену (`AI Replace`)
-5. Проверьте результаты во вкладке `AI Replacement`
-6. Экспортируйте оптимизированный файл (`Export Binary`)
+### Weaknesses
+1. **Resource requirements**
+- Model training requires significant computing power
+   - Emulation of large binaries can be slow
+
+2. **Limitations of emulation**
+- Does not support complex system calls
+- Problems with instructions that change the state of the system
+
+3. **Template dependency**
+- The quality of replacements depends on the completeness of the JSON templates
+- Requires manual configuration for new architectures
 
 ---
 
-### Особенности работы
-- **Кэширование предсказаний** - ускорение повторных операций
-- **Многоуровневая валидация**:
-  1. Статический анализ через Capstone
-  2. Динамическая эмуляция через Unicorn
-  3. Бенчмаркинг производительности
-- **Адаптивное обучение** - программа предлагает переобучить модель при изменении JSON-шаблонов
+### How to use
+1. Download the EXE file via the `Open File`
+2. Select the target instruction set (for example AVX2)
+3. Run the analysis (`Analyze File')
+4. Apply an AI replacement (`AI Replace`)
+5. Check the results in the `AI Replacement` tab
+6. Export the optimized file (`Export Binary`)
 
-> **Важно:** Все замены сохраняются в `feedback_data.json` - вы можете дополнять базу знаний вручную, после чего программа автоматически дообучит нейросеть.
+---
 
-Для разработчиков: все параметры нейросети настраиваются через `CONFIG/model_config.ini` (размеры слоёв, скорость обучения и др.).
+### Work features
+- **Caching of predictions** - acceleration of repeated operations
+- **Multi-level validation**:
+1. Static analysis via Capstone
+  2. Dynamic emulation via Unicorn
+  3. Performance benchmarking
+- **Adaptive learning** - the program offers to retrain the model when changing JSON templates
 
-ВНИМАНИЯ!!! - модель нужно постоянно обновлять что бы не было ошибок в программе
+> **Important:** All substitutions are saved in the feedback_data.json` - you can add to the knowledge base manually, after which the program will automatically retrain the neural network.
+
+For developers: all neural network parameters are configured via `CONFIG/model_config.ini` (layer sizes, learning rate, etc.).
+
+ATTENTION!!! - the model needs to be constantly updated so that there are no errors in the program
